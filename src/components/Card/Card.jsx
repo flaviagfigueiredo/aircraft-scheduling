@@ -8,7 +8,7 @@ import { Header, Content, InfoWrapper, Button } from "./styles"
 const Card = ({ flight, index, onRemove = undefined }) => {
 
     return (
-        <Draggable draggableId={flight.ident} index={index}>
+        <Draggable draggableId={flight.id} index={index}>
             {(provided, snapshot) => {
                 return (
                     <Content
@@ -16,10 +16,10 @@ const Card = ({ flight, index, onRemove = undefined }) => {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         {...snapshot}>
-                        {onRemove && <Button onClick={() => onRemove(flight.ident)}> <Cross /></Button>}
+                        {onRemove && <Button onClick={() => onRemove(flight.id)}> <Cross /></Button>}
                         <Header>
                             <Plane />
-                            <h3 style={{ padding: "5px"}} >{flight.ident}</h3>
+                            <h3 style={{ padding: "5px"}} >{flight.id}</h3>
                         </Header>
                         <InfoWrapper>
                             <div>

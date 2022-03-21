@@ -1,7 +1,6 @@
 import React from "react";
 import { Card } from "./styles";
 
-
 const AircraftCard = ({ aircraft, percentage = 0}) => {
 
     const roundedPercentage = Math.round(percentage * 10) / 10;

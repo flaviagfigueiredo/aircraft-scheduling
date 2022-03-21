@@ -54,8 +54,8 @@ const Timeline = (periods = []) => {
     }, [periods])
 
     return (
-    <div>
-        <div style={{ placeContent: "space-between", fontSize: "10px", display: "flex" }}>
+    <div style={{  display: "flex", flexDirection: "column", placeItems: "center"}}>
+        <div style={{ placeContent: "space-between", width: "200px", fontSize: "10px", display: "flex" }}>
             <span>00:00</span>
             <span>06:00</span>
             <span>12:00</span>
@@ -66,7 +66,7 @@ const Timeline = (periods = []) => {
             {timeline.length !== 0 ? 
                 timeline.map((segment, index) => {
                     const duration = (segment.duration * 2 )/ 864;
-                
+
                     if (segment.type === "Busy") return (<Busy key={index} duration={duration}/>);
                     if (segment.type === "Turnaround") return (<Turnaround  key={index}  duration={duration}/>);
                     if (segment.type === "Free") return (<Free  key={index}  duration={duration}/>);

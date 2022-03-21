@@ -10,6 +10,8 @@ const ListComponent = styled.div`
     overflow-y: auto;
     margin: 0 5px 0 5px;
     text-align: -webkit-center;
+    box-shadow: inset 0 2px 14px 0px rgb(0 0 0 / 14%), inset 0 3px 1px -2px rgb(0 0 0 / 0%);
+    border-radius: 5px
 `;
 
 const List = ({ innerRef, children}) => {
@@ -18,5 +20,7 @@ const List = ({ innerRef, children}) => {
             {children}
         </ListComponent>);
 };
+
+
 
 export default List;

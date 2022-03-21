@@ -16,7 +16,7 @@ const Content = styled.div`
     width: 200px;
 
     border-radius: 5px;
-gmgmgsada
+
     box-shadow: 1px 3px 8px 3px rgb(0 0 0 / 20%);
 
     margin-top: 20px; 
