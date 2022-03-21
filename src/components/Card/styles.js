@@ -4,6 +4,10 @@ const Header = styled.div`
     display: flex;
 `;
 
+const Title = styled.div`
+    padding: 5px
+`
+
 const Content = styled.div`
     display: flex;
     flex: 0 1 24%;
@@ -35,21 +39,30 @@ const InfoWrapper = styled.div`
 
 const Button = styled.div`
     position: relative;
-    top: 5px;
-    margin-top: -14px;
+    top: -15%;
     left: 50%;
-    border-radius: 50%;
     height: 25px;
     width: 25px;
     border: 0;
-    height: 20px;
-    width: 20px;
     cursor: initial;
     background-color: white;
     border-radius: 50%;
 `;
 
+const Box = styled.div`
+    line-height: 5px;
+`
+
+const Place = styled.p`
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+`
+
 export {
+    Title,
+    Place,
+    Box,
     Header,
     Content,
     InfoWrapper,

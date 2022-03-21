@@ -1,28 +1,29 @@
-import React, { Children, useMemo } from "react";
+import React from "react";
 import { Droppable } from "react-beautiful-dnd";
-import Timeline from "../Timeline/Timeline";
-import { calculateTimePeriods } from "../../utils/helpers/timeline";
-import { List } from "../List";
-import RotationCard from "../RotationCard/RotationCard";
-import styled from "styled-components";
+import List from "../List/List";
+import Card from "../Card/Card";
+import { Wrapper, Header } from "./styles";
 
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 250px 
-`;
-
-const Header = styled.h2`
-    padding-bottom: 5px;
-`;
-
-const RotationList = ({ title, children }) => {    
+const DroppableList = ({id, title, data, onRemove = undefined, isDragDisabled = false}) => {    
     return (
     <Wrapper>
         <Header>{title}</Header>
-        {children}
+            <Droppable droppableId={id}>
+                {(provided) => (
+                    <List innerRef={provided.innerRef}>
+                        {data?.map((flight, index) => (
+                            <Card
+                                key={flight.id}
+                                index={index}
+                                flight={flight}
+                                onRemove={onRemove}
+                                isDragDisabled={isDragDisabled}
+                            />)
+                        )}
+                        {provided.placeholder}
+                    </List>)}
+            </Droppable>
     </Wrapper>);
-}
+};
 
-export default RotationList;
+export default DroppableList;

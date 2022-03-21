@@ -9,7 +9,7 @@ const AircraftCard = ({ aircraft, percentage = 0}) => {
         <Card>
             <h3>{aircraft.ident}</h3>
             <br/>
-            <h5>{`${roundedPercentage}%`}</h5>
+            <h1>{`${roundedPercentage}%`}</h1>
         </Card>
     );
 };

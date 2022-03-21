@@ -7,4 +7,11 @@ const Wrapper = styled.div`
     width: 100%;
 `;
 
-export { Wrapper};
+const Loader = styled.div`
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+export { Wrapper, Loader};
