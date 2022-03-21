@@ -2,13 +2,14 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import Plane from "../Icon/Plane";
 import Cross from "../Icon/Cross";
-import { Header, Content, InfoWrapper, Button } from "./styles"
+import { Title, Place, Box, Header, Content, InfoWrapper, Button } from "./styles"
 
 
-const Card = ({ flight, index, onRemove = undefined }) => {
-
+const Card = ({ flight, index, isDragDisabled = false, onRemove = undefined }) => {
+    const { id, readable_departure, origin, readable_arrival, destination } = flight;
+    
     return (
-        <Draggable draggableId={flight.id} index={index}>
+        <Draggable isDragDisabled={isDragDisabled} draggableId={id} index={index}>
             {(provided, snapshot) => {
                 return (
                     <Content
@@ -16,20 +17,20 @@ const Card = ({ flight, index, onRemove = undefined }) => {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         {...snapshot}>
-                        {onRemove && <Button onClick={() => onRemove(flight.id)}> <Cross /></Button>}
+                        {onRemove && <Button onClick={() => onRemove(id)}> <Cross /></Button>}
                         <Header>
                             <Plane />
-                            <h3 style={{ padding: "5px"}} >{flight.id}</h3>
+                            <Title >{id}</Title>
                         </Header>
                         <InfoWrapper>
-                            <div>
-                                <p>{flight.readable_departure}</p>
-                                <p>{flight.origin}</p>
-                            </div>
-                            <div>
-                                <p>{flight.readable_arrival}</p>
-                                <p>{flight.destination}</p>
-                            </div>
+                            <Box>
+                                <p>{readable_departure}</p>
+                                <Place>{origin}</Place>
+                            </Box>
+                            <Box>
+                                <p>{readable_arrival}</p>
+                                <Place>{destination}</Place>
+                            </Box>
                         </InfoWrapper>
                     </Content>
                 );

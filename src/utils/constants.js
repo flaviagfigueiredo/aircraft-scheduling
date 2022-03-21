@@ -5,7 +5,7 @@ const Status = {
 };
 
 const DAY_IN_SECONDS = 86400;
-const TURNAROUND_IN_SECONDS = 20;
+const TURNAROUND_IN_SECONDS = 1200;
 
 const AIRCRAFTS_URL = "https://infinite-dawn-93085.herokuapp.com/aircrafts";
 const FLIGHTS_URL = "https://infinite-dawn-93085.herokuapp.com/flights";

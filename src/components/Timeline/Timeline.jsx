@@ -1,51 +1,7 @@
 import React, {useEffect, useState} from "react";
-import Tooltip from "../Tooltip/Tooltip";
-import styled, {css} from "styled-components";
+import { Status, DAY_IN_SECONDS } from "../../utils/constants";
+import { Onservice, Turnaround, Hours, Idle, Bar, TimelineWrapper} from "./styles";
 
-const globalStyles = css`
-&:first-child {
-    border-radius: 10px 0px 0px 10px;
-}
-
-&:last-child {
-    border-radius: 0px 10px 10px 0px;
-}
-
-&:only-child {
-    border-radius: 10px 10px 10px 10px;
-}
-`
-
-const Busy = styled.div`
-    height: 15px;
-    width: ${({ duration }) => `${duration}px` };
-    background-color: red;
-
-    ${globalStyles}
-`
-
-const Turnaround = styled.div`
-    height: 15px;
-    width: ${({ duration }) => `${duration}px` };
-    background-color: purple;
-     
-    ${globalStyles}
-`
-
-const Free = styled.div`
-    height: 15px;
-    width: ${({ duration }) => `${duration}px` };
-    background-color: green;
-     
-    ${globalStyles}
-`
-const Bar = styled.div`
-    display: flex;
-    flex-direction: row;
-    width: 200px;
-`
-
-// 1440 min -> 24 hours
 const Timeline = (periods = []) => {
     const [ timeline, setTimeline ] = useState([]);
 
@@ -54,26 +10,29 @@ const Timeline = (periods = []) => {
     }, [periods])
 
     return (
-    <div style={{  display: "flex", flexDirection: "column", placeItems: "center"}}>
-        <div style={{ placeContent: "space-between", width: "200px", fontSize: "10px", display: "flex" }}>
+    <TimelineWrapper>
+        <Hours>
             <span>00:00</span>
-            <span>06:00</span>
             <span>12:00</span>
-            <span>18:00</span>
             <span>24:00</span>
-        </div>
-        <Bar>
+        </Hours>
+         <Bar>
             {timeline.length !== 0 ? 
                 timeline.map((segment, index) => {
-                    const duration = (segment.duration * 2 )/ 864;
+                    const duration = segment.duration * 100 / DAY_IN_SECONDS;
 
-                    if (segment.type === "Busy") return (<Busy key={index} duration={duration}/>);
-                    if (segment.type === "Turnaround") return (<Turnaround  key={index}  duration={duration}/>);
-                    if (segment.type === "Free") return (<Free  key={index}  duration={duration}/>);
-                }) : (<Free duration={200}></Free>)
+                    return (
+                        <React.Fragment key={index}>
+                            { segment.type === Status.Onservice && (<Onservice duration={duration}/>)}
+                            { segment.type === Status.Turnaround && (<Turnaround duration={duration}/>)}
+                            { segment.type === Status.Idle && (<Idle duration={duration}/>)}
+                        </React.Fragment>
+                    );
+                })
+                 : (<Idle key={'free'} duration={100}/>)
             }
         </Bar>
-    </div>
+    </TimelineWrapper>
     )
 }
 
